@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business English ESL Course - Unit 6</title>
+    
+    <!-- External Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0A1A56;
+            --secondary-color: #4D99AD;
+            --white-color: #FFFFFF;
+            --text-color: #333;
+            --light-gray: #f8fafc;
+            --correct-color: #10b981;
+            --incorrect-color: #ef4444;
+        }
+        html { scroll-behavior: smooth; }
+        * { font-family: 'Lato', sans-serif; }
+        body { background-color: var(--light-gray); }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative; overflow: hidden; background-attachment: fixed;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
+            background-attachment: fixed; opacity: 0.15; z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; }
+        
+        .section-card {
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .menu-tile {
+            background: white; border-radius: 12px;
+            text-align: center; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden; padding: 15px 10px;
+        }
+        .menu-tile:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+        .menu-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 15px; transition: color 0.3s; }
+        .menu-tile:hover .menu-icon { color: var(--secondary-color); }
+        .menu-tile h3 { color: var(--primary-color); padding: 10px; margin: 0; font-size: 1.1em; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white; border: none; border-radius: 8px; padding: 10px 20px;
+            font-weight: 600; transition: all 0.3s ease; cursor: pointer;
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        
+        .btn-secondary {
+            background: white; color: var(--primary-color); border: 2px solid var(--primary-color);
+            border-radius: 8px; padding: 8px 18px; font-weight: 600;
+            transition: all 0.3s ease; cursor: pointer;
+        }
+        .btn-secondary:hover { background: var(--primary-color); color: white; }
+        
+        .quiz-toggle {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .quiz-toggle:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .quiz-toggle.active { border-radius: 8px 8px 0 0; }
+        
+        .quiz-content {
+            background: white; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0; border-top: none;
+            max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease;
+        }
+        .quiz-content.active { max-height: 4000px; opacity: 1; padding: 1.5rem; }
+
+        .feedback {
+            font-weight: 600; padding: 8px 12px; border-radius: 6px; margin-top: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .feedback.correct { color: var(--correct-color); }
+        .feedback.incorrect { color: var(--incorrect-color); }
+        
+        .memo-style { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; }
+        .objectives-box { background: #f0f9ff; border-left: 4px solid #3b82f6; border-radius: 8px; }
+        
+        .input-modern { border: 2px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; transition: border-color 0.3s ease; }
+        .input-modern:focus { outline: none; border-color: var(--secondary-color); }
+
+        #floating-progress-panel { position: fixed; bottom: 20px; left: 20px; z-index: 1000; display: none; background-color: var(--primary-color); color: var(--white-color); padding: 10px 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 220px; }
+        .page-nav-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; flex-direction: column; gap: 10px; }
+        .page-nav-buttons button { width: 50px; height: 50px; border-radius: 50%; background-color: var(--primary-color); color: var(--white-color); border: none; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
+        .page-nav-buttons button:hover { background-color: var(--secondary-color); transform: scale(1.1); }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+
+        #floating-progress-panel .progress-label {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+        #floating-progress-panel .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        #floating-progress-panel .progress-bar-fill {
+            width: 0%; 
+            height: 100%;
+            background-color: var(--secondary-color);
+            transition: width 0.2s linear;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <div class="hero-section text-white py-16">
+        <div class="hero-content text-center px-4">
+            <img src="https://ucn.edu.co/wp-content/uploads/2025/03/ucn-logosimbolo.svg" alt="UCN Logo" class="w-56 mx-auto mb-6 filter brightness-0 invert" style="width: 225px;">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Business English: Unit 6</h1>
+            <p class="text-xl mb-6 opacity-90">Basic Business Vocabulary in Context</p>
+            <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm mt-6 opacity-90">
+                <span class="flex items-center"><i class="fas fa-redo mr-2"></i>Review Unit</span>
+                <span class="flex items-center"><i class="fas fa-layer-group mr-2"></i>Beginner Level</span>
+                <span class="flex items-center"><i class="fas fa-bookmark mr-2"></i>Unit 6 of 6</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container max-w-6xl mx-auto px-4 py-8">
+        <main>
+            <div id="main-menu-content">
+                <div class="objectives-box p-6 mb-8 animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-bullseye mr-3 text-blue-600"></i>Learning Objectives</h2>
+                    <ul class="space-y-2">
+                        <li class="flex items-start space-x-3"><i class="fas fa-check-circle text-blue-600 mt-1"></i><span>Review and use key vocabulary from Units 1-5</span></li>
+                        <li class="flex items-start space-x-3"><i class="fas fa-check-circle text-blue-600 mt-1"></i><span>Complete crossword puzzles with business terms</span></li>
+                        <li class="flex items-start space-x-3"><i class="fas fa-check-circle text-blue-600 mt-1"></i><span>Read a short business memo and identify key terms</span></li>
+                        <li class="flex items-start space-x-3"><i class="fas fa-check-circle text-blue-600 mt-1"></i><span>Use business vocabulary in context correctly</span></li>
+                    </ul>
+                </div>
+                <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
+                    <div class="menu-tile p-6" onclick="showSection('vocab-section')">
+                        <i class="fas fa-book-medical menu-icon text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">1. Vocabulary Review</h3>
+                    </div>
+                    <div class="menu-tile p-6" onclick="showSection('reading-section')">
+                        <i class="fas fa-file-alt menu-icon text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">2. Reading</h3>
+                    </div>
+                    <div class="menu-tile p-6" onclick="showSection('crossword-section')">
+                        <i class="fas fa-puzzle-piece menu-icon text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">3. Crossword Puzzle</h3>
+                    </div>
+                     <div class="menu-tile p-6" onclick="showSection('grammar-section')">
+                        <i class="fas fa-pen-ruler menu-icon text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">4. Grammar Review</h3>
+                    </div>
+                    <div class="menu-tile p-6" onclick="showSection('practical-section')">
+                        <i class="fas fa-keyboard menu-icon text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">5. Practical Task</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Section -->
+            <section id="vocab-section" class="content-section section-card p-6 md:p-8 hidden">
+                <button class="btn-primary mb-6" onclick="showMenu()"><i class="fas fa-arrow-left mr-2"></i>Back to Menu</button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">1. Vocabulary Review: Units 1-5</h2>
+                <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Business documents and a pen on a desk, representing vocabulary review" class="w-full h-64 object-cover rounded-lg shadow-md mb-8">
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Unit 1: Email Communication and Introductions</h3>
+                        <iframe src="https://archive.org/embed/iwork_202506" width="100%" height="60" frameborder="0" class="rounded-lg border mb-4"></iframe>
+                        <p class="text-sm bg-gray-50 p-3 rounded">Dear Mr. Smith, Dear Ms. Jones, Dear Sir/Madam, Hello, Best regards, Sincerely, Thank you, Kind regards, Subject line, body, greeting, sign-off, signature, My name is, I am, I work at/for, Nice to meet you, Please</p>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-lg mb-2">Unit 2: Company Information</h3>
+                        <iframe src="https://archive.org/embed/17-large-company" width="100%" height="60" frameborder="0" class="rounded-lg border mb-4"></iframe>
+                        <p class="text-sm bg-gray-50 p-3 rounded">Company, name, location, address, headquarters, Products, services, business, industry, market, Employees, staff, workers, manager, CEO, Small, large, successful, international, local</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Unit 3: Time and Schedules</h3>
+                        <iframe src="https://archive.org/embed/03b-from-2-to-4" width="100%" height="60" frameborder="0" class="rounded-lg border mb-4"></iframe>
+                        <p class="text-sm bg-gray-50 p-3 rounded">Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, afternoon, evening, AM, PM, Schedule, calendar, appointment, meeting, conference, deadline, Client meeting, phone call, presentation, training, break, lunch</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Unit 4: Product Descriptions</h3>
+                        <iframe src="https://archive.org/embed/unit-4-vocab" width="100%" height="60" frameborder="0" class="rounded-lg border mb-4"></iframe>
+                        <p class="text-sm bg-gray-50 p-3 rounded">Price, cost, size, color, weight, quality, material, Big, small, long, short, wide, narrow, thick, thin, Buy, sell, order, purchase, pay, Office supplies, equipment, furniture, technology, stationery</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Unit 5: Workplace Notices and Instructions</h3>
+                        <iframe src="https://archive.org/embed/be-1-u-5-vocab" width="100%" height="60" frameborder="0" class="rounded-lg border mb-4"></iframe>
+                        <p class="text-sm bg-gray-50 p-3 rounded">Notice, sign, instructions, rules, emergency, safety, Enter, exit, press, push, pull, turn, wait, stop, Printer, copier, scanner, elevator, fire, danger</p>
+                    </div>
+                </div>
+                <div class="quiz-toggle mt-8 p-4 flex justify-between items-center" onclick="toggleQuiz(this, 'vocab-quiz-content')"><h3 class="text-xl font-bold"><i class="fas fa-brain mr-3"></i>Vocabulary Review Exercises</h3><i class="fas fa-chevron-down"></i></div>
+                <div class="quiz-content" id="vocab-quiz-content"><div id="quiz-vocab" class="space-y-4"></div><div class="mt-6"><button onclick="checkQuiz('vocab')" class="btn-primary">Check Answers</button><button onclick="generateQuiz('vocab')" class="btn-secondary ml-2">Try Again</button></div></div>
+            </section>
+            
+            <!-- Reading Section -->
+            <section id="reading-section" class="content-section section-card p-6 md:p-8 hidden">
+                <button class="btn-primary mb-6" onclick="showMenu()"><i class="fas fa-arrow-left mr-2"></i>Back to Menu</button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">2. Reading: Business Memos</h2>
+                <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A team of professionals reading documents at a conference table" class="w-full h-64 object-cover rounded-lg shadow-md mb-8">
+                <div class="space-y-6">
+                    <div class="memo-style p-6">
+                        <h3 class="text-lg font-bold border-b pb-2 mb-2">Memo 1: Office Equipment</h3>
+                        <p><strong>TO:</strong> All Staff</p><p><strong>FROM:</strong> IT Department</p><p><strong>DATE:</strong> March 15, 2024</p><p><strong>SUBJECT:</strong> New Printer Instructions</p>
+                        <p class="mt-4">We have a new color printer in the reception area on the first floor. Please follow these instructions: 1. Turn on the printer... 2. Place your document... 3. Select color... 4. Press start...</p>
+                        <p class="mt-2 text-sm">Please contact the IT department at extension 301 if you have problems.</p>
+                    </div>
+                     <div class="memo-style p-6">
+                        <h3 class="text-lg font-bold border-b pb-2 mb-2">Memo 2: Company Meeting Schedule</h3>
+                        <p><strong>TO:</strong> All Employees</p><p><strong>FROM:</strong> CEO Office</p><p><strong>DATE:</strong> March 20, 2024</p><p><strong>SUBJECT:</strong> Quarterly Business Meeting</p>
+                        <p class="mt-4">Our quarterly company meeting is scheduled for Friday, March 22 at 10:00 AM... All staff members are required to attend...</p>
+                    </div>
+                     <div class="memo-style p-6">
+                        <h3 class="text-lg font-bold border-b pb-2 mb-2">Memo 3: Safety Notice</h3>
+                        <p><strong>TO:</strong> All Employees</p><p><strong>FROM:</strong> Security Department</p><p><strong>DATE:</strong> March 25, 2024</p><p><strong>SUBJECT:</strong> Emergency Procedures Reminder</p>
+                        <p class="mt-4">Please remember these important safety instructions: Fire Emergency... Office Security...</p>
+                    </div>
+                </div>
+                <div class="quiz-toggle mt-6 p-4 flex justify-between items-center" onclick="toggleQuiz(this, 'reading-quiz-content')"><h3 class="text-xl font-bold"><i class="fas fa-question-circle mr-3"></i>Memo Comprehension</h3><i class="fas fa-chevron-down"></i></div>
+                <div class="quiz-content" id="reading-quiz-content"><div id="quiz-reading" class="space-y-4"></div><div class="mt-6"><button onclick="checkQuiz('reading')" class="btn-primary">Check Answers</button><button onclick="generateQuiz('reading')" class="btn-secondary ml-2">Try Again</button></div></div>
+            </section>
+
+            <!-- Crossword Section -->
+            <section id="crossword-section" class="content-section section-card p-6 md:p-8 hidden">
+                <button class="btn-primary mb-6" onclick="showMenu()"><i class="fas fa-arrow-left mr-2"></i>Back to Menu</button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">3. Business Vocabulary Crossword</h2>
+                <div id="crossword-wrapper" class="bg-gray-100 p-4 rounded-lg">
+                    <iframe id="crossword-iframe" style="width: 100%; height: 750px; border: none;" src="crossword.html"></iframe>
+                </div>
+            </section>
+            
+            <!-- Grammar Review Section -->
+            <section id="grammar-section" class="content-section section-card p-6 md:p-8 hidden">
+                 <button class="btn-primary mb-6" onclick="showMenu()"><i class="fas fa-arrow-left mr-2"></i>Back to Menu</button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">4. Grammar Review</h2>
+                <img src="https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A bookshelf filled with books, representing grammar rules" class="w-full h-64 object-cover rounded-lg shadow-md mb-8">
+                <div class="quiz-toggle mt-8 p-4 flex justify-between items-center" onclick="toggleQuiz(this, 'grammar-quiz-content')"><h3 class="text-xl font-bold"><i class="fas fa-edit mr-3"></i>Cumulative Grammar Quiz</h3><i class="fas fa-chevron-down"></i></div>
+                <div class="quiz-content" id="grammar-quiz-content"><div id="quiz-grammar" class="space-y-4"></div><div class="mt-6"><button onclick="checkQuiz('grammar')" class="btn-primary">Check Answers</button><button onclick="generateQuiz('grammar')" class="btn-secondary ml-2">Try Again</button></div></div>
+            </section>
+            
+            <!-- Practical Task Section -->
+            <section id="practical-section" class="content-section section-card p-6 md:p-8 hidden">
+                <button class="btn-primary mb-6" onclick="showMenu()"><i class="fas fa-arrow-left mr-2"></i>Back to Menu</button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">5. Practical Task: Write a Business Memo</h2>
+                 <!-- === CHANGED IMAGE === -->
+                <img src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A person thoughtfully writing at a desk with a laptop and notebook" class="w-full h-64 object-cover rounded-lg shadow-md mb-8">
+                <p><strong>Situation:</strong> You need to write a short memo to all staff about a new office policy. Use at least 15 vocabulary words from Units 1-5.</p>
+                <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="bg-gray-50 p-6 rounded-lg border">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Memo Template</h3>
+                        <div class="space-y-4">
+                            <div><label class="block font-semibold text-gray-700 mb-1">TO:</label><input type="text" value="All Staff" class="input-modern w-full"></div>
+                            <div><label class="block font-semibold text-gray-700 mb-1">FROM:</label><input type="text" placeholder="Your Name/Department" class="input-modern w-full"></div>
+                            <div><label class="block font-semibold text-gray-700 mb-1">DATE:</label><input type="date" class="input-modern w-full"></div>
+                            <div><label class="block font-semibold text-gray-700 mb-1">SUBJECT:</label><input type="text" placeholder="e.g., New Office Policy" class="input-modern w-full"></div>
+                            <div><label class="block font-semibold text-gray-700 mb-1">Body:</label><textarea rows="8" class="input-modern w-full" placeholder="Write your memo here..."></textarea></div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Self-Check Questions</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 bg-white rounded-lg border hover:bg-gray-100 cursor-pointer"><input type="checkbox" class="h-5 w-5 mr-3 text-blue-600 rounded focus:ring-blue-500"><span>Did you use vocabulary from all 5 units?</span></label>
+                            <label class="flex items-center p-3 bg-white rounded-lg border hover:bg-gray-100 cursor-pointer"><input type="checkbox" class="h-5 w-5 mr-3 text-blue-600 rounded focus:ring-blue-500"><span>Does your memo follow the correct format?</span></label>
+                            <label class="flex items-center p-3 bg-white rounded-lg border hover:bg-gray-100 cursor-pointer"><input type="checkbox" class="h-5 w-5 mr-3 text-blue-600 rounded focus:ring-blue-500"><span>Did you use at least 15 vocabulary words?</span></label>
+                            <label class="flex items-center p-3 bg-white rounded-lg border hover:bg-gray-100 cursor-pointer"><input type="checkbox" class="h-5 w-5 mr-3 text-blue-600 rounded focus:ring-blue-500"><span>Are all words spelled correctly?</span></label>
+                            <label class="flex items-center p-3 bg-white rounded-lg border hover:bg-gray-100 cursor-pointer"><input type="checkbox" class="h-5 w-5 mr-3 text-blue-600 rounded focus:ring-blue-500"><span>Is your memo clear and professional?</span></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FLOATING UI ELEMENTS -->
+    <div id="floating-progress-panel">
+        <div class="progress-label" id="progress-label">Section Progress</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+    </div>
+    <div class="page-nav-buttons" id="page-nav"><button onclick="goToTop()" title="Go to Top"><i class="fas fa-arrow-up"></i></button><button onclick="goToBottom()" title="Go to Bottom"><i class="fas fa-arrow-down"></i></button></div>
+    
+    <!-- Congratulations Modal -->
+    <div id="congrats-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-sm w-full text-center animate-fade-in-up">
+            <i class="fas fa-trophy text-yellow-400 text-6xl mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Congratulations!</h2>
+            <p class="text-gray-600">You have successfully finished this business English course.</p>
+            
+            <!-- === ADDED SCORE DISPLAY SECTION === -->
+            <div class="mt-6 text-left border-t pt-4">
+                <h3 class="font-bold text-gray-700 mb-2">Your Quiz Scores:</h3>
+                <ul class="space-y-1 text-sm text-gray-600">
+                    <li>Vocabulary Review: <strong id="vocab-score-display" class="text-gray-800">0/0</strong></li>
+                    <li>Reading Comprehension: <strong id="reading-score-display" class="text-gray-800">0/0</strong></li>
+                    <li>Grammar Review: <strong id="grammar-score-display" class="text-gray-800">0/0</strong></li>
+                </ul>
+            </div>
+            
+            <button id="close-modal-btn" class="btn-primary mt-6 w-full">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const quizPool = {
+            vocab: [ { type: 'fill', q: '_______ Ms. Johnson, I am writing to introduce our new employee.', a: 'Dear'}, { type: 'fill', q: 'Please send your _______ to my email address.', a: 'signature'}, { type: 'choice', q: 'The (meeting/price) is scheduled for Friday.', a: 'meeting', o:['meeting', 'price']}, { type: 'choice', q: 'This laptop (costs/arrives) $800.', a: 'costs', o:['costs', 'arrives']}, { type: 'choice', q: 'We have a (deadline/material) on Wednesday for the project.', a: 'deadline', o:['deadline', 'material']}, { type: 'match', q: 'Match instruction: Press the start button', a: 'b', o: ['a) Fire emergency', 'b) Using the printer', 'c) Making coffee']}, { type: 'match', q: 'Match instruction: Do not use elevator', a: 'a', o: ['a) Fire emergency', 'b) End of work day', 'c) Making coffee']}, { type: 'fill', q: 'Our company _______ are computers and our main _______ is in California.', a: 'products, headquarters'}, { type: 'fill', q: 'I work at a large technology _______ and would like to schedule a _______.', a: 'company, meeting'}, { type: 'fill', q: '_______ for your time. _______ regards, John Smith.', a: 'Thank you, Best'} ],
+            crossword: [ { type: 'fill', q: '1 ACROSS: Person who manages other people (7 letters)', a: 'manager'}, { type: 'fill', q: '2 ACROSS: Day after Tuesday (9 letters)', a: 'Wednesday'}, { type: 'fill', q: '3 ACROSS: Things a company makes or sells (8 letters)', a: 'products'}, { type: 'fill', q: '4 ACROSS: Cost of something (5 letters)', a: 'price'}, { type: 'fill', q: '5 ACROSS: Main office of a company (12 letters)', a: 'headquarters'}, { type: 'fill', q: '2 DOWN: A business organization (7 letters)', a: 'company'}, { type: 'fill', q: '3 DOWN: A planned meeting with someone (11 letters)', a: 'appointment'}, { type: 'fill', q: '5 DOWN: What something is made from (8 letters)', a: 'material'}, { type: 'fill', q: '7 DOWN: Time before noon (7 letters)', a: 'morning'}, { type: 'fill', q: '9 DOWN: To give money for something (3 letters)', a: 'buy'} ],
+            reading: [ { type: 'tf', q: 'The new printer is on the second floor.', a: 'F'}, { type: 'tf', q: 'Color printing costs more than black and white.', a: 'T'}, { type: 'tf', q: 'The company meeting is on Thursday.', a: 'F'}, { type: 'tf', q: 'You can use elevators during fire emergencies.', a: 'F'}, { type: 'tf', q: 'You should give your access card to colleagues.', a: 'F'}, { type: 'tf', q: 'The IT department extension is 301.', a: 'T'}, { type: 'tf', q: 'The meeting location is the main conference room.', a: 'T'}, { type: 'choice', q: 'Who sent the memo about the company meeting?', a: 'The CEO Office', o: ['The IT Department', 'The CEO Office', 'The Security Manager']}, { type: 'choice', q: 'What should you bring to the quarterly meeting?', a: 'Your quarterly reports', o: ['Your lunch', 'Your quarterly reports', 'A new printer']}, { type: 'choice', q: 'For emergencies, you should call extension _______.', a: '911', o: ['205', '301', '911']} ],
+            grammar: [ { type: 'tf', q: '"She work at Google" is grammatically correct.', a: 'F' }, { type: 'tf', q: '"They is the new managers" is grammatically correct.', a: 'F' }, { type: 'tf', q: '"at" is correct for a specific time, like "at 3:00 PM."', a: 'T' }, { type: 'tf', q: '"The company have 50 employees" is grammatically correct.', a: 'F' }, { type: 'tf', q: 'In "a leather black big bag," the adjectives are in the correct order.', a: 'F' }, { type: 'tf', q: '"The meeting is in Friday" is correct.', a: 'F' }, { type: 'tf', q: '"This desk is made of of wood" is correct.', a: 'F' }, { type: 'tf', q: '"Not enter the room" is a correct negative imperative.', a: 'F' }, { type: 'tf', q: '"If you need help, call me" is a correct conditional instruction.', a: 'T' }, { type: 'choice', q: 'My name ______ David Chen.', a: 'is', o: ['am', 'is', 'are'] }, { type: 'choice', q: 'She ______ in the marketing department.', a: 'works', o: ['work', 'working', 'works'] }, { type: 'choice', q: 'The company ______ its headquarters in London.', a: 'has', o: ['have', 'are', 'has'] }, { type: 'choice', q: 'The main office is located ______ Japan.', a: 'in', o: ['at', 'on', 'in'] }, { type: 'choice', q: 'Let\'s meet ______ noon for lunch.', a: 'at', o: ['on', 'in', 'at'] }, { type: 'choice', q: 'This laptop ______ $599.', a: 'costs', o: ['costs', 'is cost', 'prices'] }, { type: 'choice', q: 'These chairs ______ available in three colors.', a: 'are', o: ['is', 'has', 'are'] }, { type: 'choice', q: '______ use the elevator in case of fire.', a: 'Don\'t', o: ['No', 'Not', 'Don\'t'] }, { type: 'fill', q: 'This ______ my colleague, Sarah.', a: 'is' }, { type: 'fill', q: 'I ______ (work) for a technology company.', a: 'work' }, { type: 'fill', q: 'The company ______ many employees worldwide.', a: 'has' }, { type: 'fill', q: 'The meeting starts ______ 9:00 AM.', a: 'at' }, { type: 'fill', q: 'The chair is made ______ high-quality leather.', a: 'of' }, { type: 'fill', q: 'It is available ______ black, white, and blue.', a: 'in' }, { type: 'fill', q: '______ the power button to turn on the printer.', a: 'Press' }, { type: 'fill', q: '______ there is a fire, use the stairs.', a: 'If' } ]
+        };
+        
+        // === ADDED: Object to store quiz scores ===
+        const quizScores = {
+            vocab: { correct: 0, total: 0 },
+            reading: { correct: 0, total: 0 },
+            grammar: { correct: 0, total: 0 }
+        };
+
+        const mainMenuContent = document.getElementById('main-menu-content');
+        const allSections = document.querySelectorAll('.content-section');
+        const pageNav = document.getElementById('page-nav');
+        const progressPanel = document.getElementById('floating-progress-panel');
+        let currentSection = null;
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            // Generate quizzes on page load
+            generateQuiz('vocab', 10); 
+            generateQuiz('reading', 10); 
+            generateQuiz('grammar', 10);
+            
+            // --- Modal Logic ---
+            const selfCheckCheckboxes = document.querySelectorAll('#practical-section .space-y-3 input[type="checkbox"]');
+            const congratsModal = document.getElementById('congrats-modal');
+            const closeModalButton = document.getElementById('close-modal-btn');
+
+            if (selfCheckCheckboxes.length > 0 && congratsModal && closeModalButton) {
+                
+                const checkCompletionStatus = () => {
+                    const allTicked = Array.from(selfCheckCheckboxes).every(checkbox => checkbox.checked);
+                    if (allTicked) {
+                        // === ADDED: Update score displays before showing modal ===
+                        document.getElementById('vocab-score-display').textContent = `${quizScores.vocab.correct} / ${quizScores.vocab.total}`;
+                        document.getElementById('reading-score-display').textContent = `${quizScores.reading.correct} / ${quizScores.reading.total}`;
+                        document.getElementById('grammar-score-display').textContent = `${quizScores.grammar.correct} / ${quizScores.grammar.total}`;
+
+                        congratsModal.classList.remove('hidden');
+                        congratsModal.classList.add('flex');
+                    }
+                };
+
+                const hideCongratsModal = () => {
+                    congratsModal.classList.add('hidden');
+                    congratsModal.classList.remove('flex');
+                };
+
+                selfCheckCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', checkCompletionStatus);
+                });
+
+                closeModalButton.addEventListener('click', hideCongratsModal);
+                congratsModal.addEventListener('click', (event) => {
+                    if (event.target === congratsModal) {
+                        hideCongratsModal();
+                    }
+                });
+            }
+        });
+        
+        function resetIframes(sectionEl) { if (sectionEl) sectionEl.querySelectorAll('iframe').forEach(iframe => { const src = iframe.src; iframe.src = null; iframe.src = src; }); }
+        
+        function showMenu() {
+            if (currentSection) resetIframes(currentSection);
+            currentSection = null;
+            mainMenuContent.style.display = 'block';
+            allSections.forEach(s => { s.style.display = 'none'; });
+            window.removeEventListener('scroll', updateProgressBar);
+            progressPanel.style.display = 'none';
+            pageNav.style.display = 'none';
+        }
+
+        function showSection(id) {
+            if (currentSection) resetIframes(currentSection);
+            mainMenuContent.style.display = 'none';
+            allSections.forEach(s => { s.style.display = 'none'; });
+            currentSection = document.getElementById(id);
+            if(currentSection) {
+                currentSection.style.display = 'block';
+                window.scrollTo(0,0);
+                window.addEventListener('scroll', updateProgressBar);
+                updateProgressBar(); 
+            }
+        }
+        
+        function toggleQuiz(button, contentId) { button.classList.toggle('active'); document.getElementById(contentId).classList.toggle('active'); setTimeout(updateProgressBar, 500); }
+        function goToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        function goToBottom() { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
+        
+        function updateProgressBar() {
+            pageNav.style.display = (window.scrollY > 200) ? "flex" : "none";
+
+            if (!currentSection) {
+                progressPanel.style.display = 'none';
+                return;
+            }
+            
+            progressPanel.style.display = 'block';
+
+            const progressBar = document.getElementById('progress-bar');
+            const progressLabel = document.getElementById('progress-label');
+
+            const sectionTop = currentSection.offsetTop;
+            const sectionHeight = currentSection.scrollHeight;
+            const viewportHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+
+            const scrollableDistance = sectionHeight - viewportHeight;
+            const scrolledWithinSection = scrollY - sectionTop;
+
+            let percentage = 0;
+
+            if (scrollableDistance <= 0) {
+                if (scrollY + viewportHeight > sectionTop && scrollY < sectionTop + sectionHeight) {
+                    percentage = 100;
+                }
+            } else {
+                percentage = (scrolledWithinSection / scrollableDistance) * 100;
+            }
+
+            percentage = Math.max(0, Math.min(percentage, 100));
+
+            progressBar.style.width = percentage + '%';
+            progressLabel.textContent = `Section ${Math.round(percentage)}% Explored`;
+        }
+        window.addEventListener('scroll', updateProgressBar);
+
+        function getShuffledQuestions(type, num) { return quizPool[type].sort(() => 0.5 - Math.random()).slice(0, num); }
+        
+        function generateQuiz(type) {
+            const container = document.getElementById(`quiz-${type}`); if (!container) return;
+            const questions = getShuffledQuestions(type, 10);
+            if(questions.length === 0) { container.innerHTML = "<p>No questions available for this section.</p>"; return; }
+            let html = '';
+            questions.forEach((q, i) => {
+                let qHtml = `<div class="quiz-question bg-gray-50 p-4 rounded-lg border" data-a="${q.a}"><p class="font-semibold text-gray-800 mb-3"><span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-800 rounded-full text-sm font-bold mr-3">${i + 1}</span>`;
+                if (q.type === 'fill') {
+                    qHtml += `${q.q.replace(/_+/g, '<input type="text" class="input-modern inline-block w-40 mx-1">')}</p>`;
+                } else if (q.type === 'choice' || q.type === 'tf' || q.type === 'match') {
+                    qHtml += `${q.q}</p><div class="options mt-3 space-y-2">`;
+                    const opts = q.type === 'tf' ? ['T', 'F'] : q.o;
+                    opts.forEach(o => {
+                        let val, lbl;
+                        if (q.type === 'tf') { val = o; lbl = (o === 'T' ? 'True' : 'False'); }
+                        else if (q.type === 'match') { val = o.split(') ')[0]; lbl = o; }
+                        else { val = o; lbl = o; }
+                        qHtml += `<label class="flex items-center p-3 bg-white rounded-lg border hover:bg-gray-50 cursor-pointer"><input type="radio" name="q${type}${i}" value="${val}" class="mr-3 text-blue-600 focus:ring-blue-500"><span>${lbl}</span></label>`;
+                    });
+                    qHtml += `</div>`;
+                }
+                qHtml += '<div class="feedback mt-3"></div></div>';
+                html += qHtml;
+            });
+            container.innerHTML = html;
+        }
+
+        // === MODIFIED: checkQuiz function to store scores ===
+        function checkQuiz(type) {
+            // Reset scores for this quiz type before checking
+            quizScores[type] = { correct: 0, total: 0 };
+            
+            document.querySelectorAll(`#quiz-${type} .quiz-question`).forEach(q => {
+                quizScores[type].total++; // Increment total questions for this quiz
+                const ans = q.dataset.a; 
+                const fb = q.querySelector('.feedback'); 
+                let userAns;
+                const input = q.querySelector('input[type="text"]'); 
+                const selected = q.querySelector('input:checked');
+                
+                if (input) userAns = input.value.trim().replace(/\.$/, ""); 
+                else if (selected) userAns = selected.value;
+
+                if (userAns === undefined || userAns === "") { 
+                    fb.innerHTML = `<span class="feedback incorrect">⚠️ Please provide an answer.</span>`; 
+                    return; 
+                }
+
+                if (userAns.toLowerCase() === ans.toLowerCase().replace(/\.$/, "")) { 
+                    fb.innerHTML = `<span class="feedback correct">✅️ Correct!</span>`; 
+                    quizScores[type].correct++; // Increment correct answers count
+                } else { 
+                    fb.innerHTML = `<span class="feedback incorrect">❌ Incorrect. The correct answer is: <strong>${ans}</strong></span>`; 
+                }
+            });
+        }
+    </script>
+</body>
+</html>
